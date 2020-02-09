@@ -29,8 +29,8 @@ public class ControlUserTest {
     
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     private User user;
-    private List<User> listAllsUser = new ArrayList<>();
-    private UserDAO dao = Mockito.mock(UserDAO.class);
+    private List<User> listAllsUser;
+    private UserDAO dao;
     private UserControl userControl;
     
     public ControlUserTest() {
@@ -46,12 +46,14 @@ public class ControlUserTest {
     
     @Before
     public void setUp() throws ParseException {
+        dao = Mockito.mock(UserDAO.class);
         user = new User();
         user.setName("Fulano da Silva");
         user.setBirthDate(sdf.parse("20/12/1985"));
         user.setCPF("11843771766");
         user.setRegistrationDate(sdf.parse("20/12/2000"));
         user.setExamExperationDate(sdf.parse("20/12/2020"));
+        listAllsUser = new ArrayList<User>();
         listAllsUser.add(user);
     }
     
@@ -70,12 +72,13 @@ public class ControlUserTest {
         //cenario
         this.userControl = new UserControl(this.dao);
         when(this.dao.getUserList()).thenReturn(listAllsUser);
-        //action
         
+        //action
         List<User> list = this.userControl.getAllsUser();
+        
+        System.out.println(list.isEmpty());
         
         //validation
         assertFalse(list.isEmpty());
-        
     }
 }

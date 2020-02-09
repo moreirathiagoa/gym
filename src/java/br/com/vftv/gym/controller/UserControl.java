@@ -18,7 +18,7 @@ public class UserControl {
     private UserDAO userDAO;
 
     public UserControl() {
-        this.userDAO = new UserDAO();
+        this.userDAO = new UserDAO() {};
     }
 
     //Construct to user by test
