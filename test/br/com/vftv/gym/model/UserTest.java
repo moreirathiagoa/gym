@@ -118,28 +118,28 @@ public class UserTest {
     @Test
     public void releaseUserExamExpired() throws ParseException{
         //cenario
-        System.out.println("ExamExpired");
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DAY_OF_MONTH, -1);
         user.setExamExperationDate(cal.getTime());
+        
         //action
         Boolean result = user.isExamExamExpired();
+        
         //validation
-        System.out.println(result);
         assertTrue(result);
     }
     
     @Test
     public void releaseUserExamNotExpired() throws ParseException{
         //cenario
-        System.out.println("ExamNotExpired");
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DAY_OF_MONTH, 1);
         user.setExamExperationDate(cal.getTime());
+        
         //action
         Boolean result = user.isExamExamExpired();
+        
         //validation
-        System.out.println(result);
         assertFalse(result);
     }
 
