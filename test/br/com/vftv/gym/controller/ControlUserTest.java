@@ -19,7 +19,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.when;
-import org.mockito.stubbing.Answer;
 
 /**
  *
@@ -75,8 +74,6 @@ public class ControlUserTest {
         
         //action
         List<User> list = this.userControl.getAllsUser();
-        
-        System.out.println(list.isEmpty());
         
         //validation
         assertFalse(list.isEmpty());
