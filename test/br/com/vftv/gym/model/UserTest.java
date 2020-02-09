@@ -116,5 +116,32 @@ public class UserTest {
         assertFalse(result);
     }
     
+    @Test
+    public void releaseUserExamExpired() throws ParseException{
+        //cenario
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_MONTH, -1);
+        user.setExamExperationDate(cal.getTime());
+        
+        //action
+        Boolean result = user.isExamExamExpired();
+        
+        //validation
+        assertTrue(result);
+    }
     
+    @Test
+    public void releaseUserExamNotExpired() throws ParseException{
+        //cenario
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_MONTH, 1);
+        user.setExamExperationDate(cal.getTime());
+        
+        //action
+        Boolean result = user.isExamExamExpired();
+        
+        //validation
+        assertFalse(result);
+    }
+
 }
