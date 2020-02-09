@@ -36,9 +36,7 @@ public class AccessControlController {
     {
         if(user.isPaymentOnDay())
         {
-     
             dao.registerEntrace(user);
-            System.out.println("passou");
         }
         else
             throw new Exception("User is not available to workout");
