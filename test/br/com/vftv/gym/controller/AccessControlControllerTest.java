@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.vftv.gym.model;
+package br.com.vftv.gym.controller;
 
+import br.com.vftv.gym.dao.AccessControlDAO;
+import br.com.vftv.gym.model.AccessControl;
+import br.com.vftv.gym.model.User;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -23,12 +26,13 @@ import org.mockito.Mockito;
  *
  * @author thiag
  */
-public class AccessControlTest {
+public class AccessControlControllerTest {
     
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private AccessControlDAO dao;
     private User user;
     
-    public AccessControlTest() {
+    public AccessControlControllerTest() {
     }
     
     @BeforeClass
@@ -40,39 +44,51 @@ public class AccessControlTest {
     }
     
     @Before
-    public void setUp() throws ParseException {
-        user = new User();
-        user.setName("Fulano da Silva");
-        user.setBirthDate(sdf.parse("20/12/1985"));
-        user.setCPF("11843771766");
-        user.setRegistrationDate(sdf.parse("20/12/2000"));
-        user.setExamExperationDate(sdf.parse("20/12/2020"));
-        user.setPayDay(Calendar.getInstance().getTime());
+    public void setUp() {
+        dao = Mockito.mock(AccessControlDAO.class);
     }
     
     @After
     public void tearDown() {
     }
 
+    /**
+     * Test of isWorkingOut method, of class AccessControlController.
+     */
     @Test
-    public void isWorkingOutConfirm() throws ParseException
-    {
-        //cenario        
+    public void isUserWorkingOutTest() throws ParseException {
+        //cenario
+        user = new User();
+        user.setName("Fulano da Silva");
+        user.setBirthDate(sdf.parse("20/12/1985"));
+        user.setCPF("11843771766");
+        user.setRegistrationDate(sdf.parse("20/12/2000"));
+        user.setExamExperationDate(sdf.parse("20/12/2020"));
+        
         AccessControl accessControl = new AccessControl();
         accessControl.setEntrace(Calendar.getInstance().getTime());
         accessControl.setUser(user);
-                
+        
+        Mockito.when(dao.getLastAcces(user)).thenReturn(accessControl);
+        AccessControlController accesControlController = new AccessControlController(dao);
+        
         //action
-        Boolean result = accessControl.isWorkingOut();
+        Boolean result = accesControlController.isWorkingOut(user);
         
         //validation
         assertTrue(result);
     }
     
     @Test
-    public void isNotWorkingOutConfirm() throws ParseException
-    {
+    public void isUserNotWorkingOutTest() throws ParseException {
         //cenario
+        user = new User();
+        user.setName("Fulano da Silva");
+        user.setBirthDate(sdf.parse("20/12/1985"));
+        user.setCPF("11843771766");
+        user.setRegistrationDate(sdf.parse("20/12/2000"));
+        user.setExamExperationDate(sdf.parse("20/12/2020"));
+        
         AccessControl accessControl = new AccessControl();
         LocalDateTime dateEntrace = Calendar.getInstance().getTime()
                 .toInstant()
@@ -82,11 +98,15 @@ public class AccessControlTest {
         accessControl.setEntrace(Date.from(dateEntrace.atZone( ZoneId.systemDefault()).toInstant()));
         accessControl.setExit(Calendar.getInstance().getTime());
         accessControl.setUser(user);
-                
+        
+        Mockito.when(dao.getLastAcces(user)).thenReturn(accessControl);
+        AccessControlController accesControlController = new AccessControlController(dao);
+        
         //action
-        Boolean result = accessControl.isWorkingOut();
+        Boolean result = accesControlController.isWorkingOut(user);
         
         //validation
         assertFalse(result);
     }
+    
 }
