@@ -25,6 +25,7 @@ import static org.junit.Assert.*;
 public class AccessControlTest {
     
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private User user;
     
     public AccessControlTest() {
     }
@@ -38,7 +39,14 @@ public class AccessControlTest {
     }
     
     @Before
-    public void setUp() {
+    public void setUp() throws ParseException {
+        user = new User();
+        user.setName("Fulano da Silva");
+        user.setBirthDate(sdf.parse("20/12/1985"));
+        user.setCPF("11843771766");
+        user.setRegistrationDate(sdf.parse("20/12/2000"));
+        user.setExamExperationDate(sdf.parse("20/12/2020"));
+        user.setPayDay(Calendar.getInstance().getTime());
     }
     
     @After
@@ -48,16 +56,7 @@ public class AccessControlTest {
     @Test
     public void isWorkingOutConfirm() throws ParseException
     {
-        //cenario
-        User user;
-        user = new User();
-        user.setName("Fulano da Silva");
-        user.setBirthDate(sdf.parse("20/12/1985"));
-        user.setCPF("11843771766");
-        user.setRegistrationDate(sdf.parse("20/12/2000"));
-        user.setExamExperationDate(sdf.parse("20/12/2020"));
-        user.setPayDay(Calendar.getInstance().getTime());
-        
+        //cenario        
         AccessControl accessControl = new AccessControl();
         accessControl.setEntrace(Calendar.getInstance().getTime());
         accessControl.setUser(user);
@@ -73,23 +72,12 @@ public class AccessControlTest {
     public void isNotWorkingOutConfirm() throws ParseException
     {
         //cenario
-        User user;
-        user = new User();
-        user.setName("Fulano da Silva");
-        user.setBirthDate(sdf.parse("20/12/1985"));
-        user.setCPF("11843771766");
-        user.setRegistrationDate(sdf.parse("20/12/2000"));
-        user.setExamExperationDate(sdf.parse("20/12/2020"));
-        user.setPayDay(Calendar.getInstance().getTime());
-        
         AccessControl accessControl = new AccessControl();
-        
         LocalDateTime dateEntrace = Calendar.getInstance().getTime()
                 .toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDateTime()
                 .plusHours(-1);
-        
         accessControl.setEntrace(Date.from(dateEntrace.atZone( ZoneId.systemDefault()).toInstant()));
         accessControl.setExit(Calendar.getInstance().getTime());
         accessControl.setUser(user);
