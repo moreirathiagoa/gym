@@ -144,7 +144,7 @@ public class User {
         LocalDateTime examExperationDate = this.examExperationDate.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDateTime();
-        System.out.println(today+" isisAfter "+examExperationDate);
+        System.out.print(today+" isisAfter "+examExperationDate+" = ");
         return today.isAfter(examExperationDate);
     }
     

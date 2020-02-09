@@ -118,13 +118,10 @@ public class UserTest {
     @Test
     public void releaseUserExamExpired() throws ParseException{
         //cenario
-        User user = new User();
-        user.setName("Fulano da Silva");
-        user.setBirthDate(sdf.parse("20/12/1985"));
-        user.setCPF("11843771766");
-        user.setRegistrationDate(sdf.parse("20/12/2000"));
-        user.setExamExperationDate(sdf.parse("08/12/2020"));
-        user.setPayDay(sdf.parse("07/01/2020"));
+        System.out.println("ExamExpired");
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_MONTH, -1);
+        user.setExamExperationDate(cal.getTime());
         //action
         Boolean result = user.isExamExamExpired();
         //validation
@@ -135,13 +132,10 @@ public class UserTest {
     @Test
     public void releaseUserExamNotExpired() throws ParseException{
         //cenario
-        User user = new User();
-        user.setName("Fulano da Silva");
-        user.setBirthDate(sdf.parse("20/12/1985"));
-        user.setCPF("11843771766");
-        user.setRegistrationDate(sdf.parse("20/12/2000"));
-        user.setExamExperationDate(Calendar.getInstance().getTime());
-        user.setPayDay(sdf.parse("07/01/2020"));
+        System.out.println("ExamNotExpired");
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_MONTH, 1);
+        user.setExamExperationDate(cal.getTime());
         //action
         Boolean result = user.isExamExamExpired();
         //validation
