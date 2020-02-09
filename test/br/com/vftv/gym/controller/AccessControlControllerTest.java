@@ -14,12 +14,16 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
 import org.mockito.Mockito;
 
 /**
@@ -109,4 +113,44 @@ public class AccessControlControllerTest {
         assertFalse(result);
     }
     
+    @Test 
+    public void entraceGranted() throws ParseException, Exception
+    {
+        //cenario
+        user = new User();
+        user.setName("Fulano da Silva");
+        user.setBirthDate(sdf.parse("20/12/1985"));
+        user.setCPF("11843771766");
+        user.setRegistrationDate(sdf.parse("20/12/2000"));
+        user.setExamExperationDate(sdf.parse("20/12/2020"));
+        user.setPayDay(Calendar.getInstance().getTime());
+        
+        //action
+        AccessControlController accesControlController = new AccessControlController(dao);
+        accesControlController.registerEntrace(user);
+    }
+    
+    
+    @Test
+    public void entraceNotGranted() throws ParseException
+    {
+        //cenario
+        user = new User();
+        user.setName("Fulano da Silva");
+        user.setBirthDate(sdf.parse("20/12/1985"));
+        user.setCPF("11843771766");
+        user.setRegistrationDate(sdf.parse("20/12/2000"));
+        user.setExamExperationDate(sdf.parse("20/12/2020"));
+        //user.setPayDay(Calendar.getInstance().getTime());
+        user.setPayDay(sdf.parse("01/01/2020"));
+        
+        //Mockito.when(dao.registerEntrace(user)).thenReturn(null);
+        AccessControlController accesControlController = new AccessControlController(dao);
+        
+        try {
+            accesControlController.registerEntrace(user);
+        } catch (Exception ex) {
+            assertThat(ex.getMessage(), is("User is not available to workout"));
+        }
+    }
 }

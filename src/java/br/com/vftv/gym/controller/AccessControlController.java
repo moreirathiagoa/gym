@@ -32,4 +32,15 @@ public class AccessControlController {
         return false;
     }
     
+    public void registerEntrace(User user) throws Exception
+    {
+        if(user.isPaymentOnDay())
+        {
+     
+            dao.registerEntrace(user);
+            System.out.println("passou");
+        }
+        else
+            throw new Exception("User is not available to workout");
+    }
 }
