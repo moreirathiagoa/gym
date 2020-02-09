@@ -7,7 +7,6 @@ package br.com.vftv.gym.model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import org.junit.After;
 import org.junit.AfterClass;
