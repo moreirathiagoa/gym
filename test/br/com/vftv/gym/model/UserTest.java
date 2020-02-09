@@ -7,6 +7,7 @@ package br.com.vftv.gym.model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -15,21 +16,16 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author felli
- */
 public class UserTest {
     
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    
     
     public UserTest() {
     }
     
     @BeforeClass
     public static void setUpClass() {
-        
+
     }
     
     @AfterClass
@@ -45,7 +41,8 @@ public class UserTest {
     }
     
     @Test
-    public void UserPaymentOnDayTest() throws ParseException{
+    public void releaseUserPaymentOnDay() throws ParseException
+    {
         //cenario
         User user = new User();
         user.setName("Fulano da Silva");
@@ -54,14 +51,17 @@ public class UserTest {
         user.setRegistrationDate(sdf.parse("20/12/2000"));
         user.setExamExperationDate(sdf.parse("20/12/2020"));
         user.setPayDay(Calendar.getInstance().getTime());
+        
         //action
         Boolean result = user.isPaymentOnDay();
+        
         //validation
         assertTrue(result);
     }
     
     @Test
-    public void UserPaymentNotOnDayTest() throws ParseException{
+    public void releaseUserNotPaymentOnDay() throws ParseException
+    {
         //cenario
         User user = new User();
         user.setName("Fulano da Silva");

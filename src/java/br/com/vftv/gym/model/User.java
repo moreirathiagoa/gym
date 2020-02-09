@@ -5,12 +5,8 @@
  */
 package br.com.vftv.gym.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.temporal.Temporal;
-import java.time.temporal.TemporalAccessor;
-import java.time.temporal.TemporalField;
 import java.util.Date;
 import java.util.Objects;
 
@@ -130,19 +126,16 @@ public class User {
         return true;
     }
 
-    public Boolean isPaymentOnDay() {
+    public Boolean isPaymentOnDay() 
+    {
         LocalDateTime today = LocalDateTime.now();
-        System.out.println(today);
-        LocalDateTime payDateExperation = this.payDay.toInstant().
-                atZone(ZoneId.systemDefault())
-                .toLocalDateTime().plusDays(30);
-        System.out.println(payDateExperation);
-        if(today.isAfter(payDateExperation))
+        LocalDateTime payDayExperation = this.payDay.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime()
+                .plusDays(30);
+
+        if(today.isAfter(payDayExperation))
             return false;
         return true;
     }
-    
-    
-    
-    
 }
