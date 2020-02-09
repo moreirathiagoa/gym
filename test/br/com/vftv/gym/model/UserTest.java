@@ -1,0 +1,62 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.com.vftv.gym.model;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/**
+ *
+ * @author felli
+ */
+public class UserTest {
+    
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    
+    
+    public UserTest() {
+    }
+    
+    @BeforeClass
+    public static void setUpClass() {
+        
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
+    @Before
+    public void setUp() {
+    }
+    
+    @After
+    public void tearDown() {
+    }
+    
+    @Test
+    public void UserPaymentOnDayTest() throws ParseException{
+        //cenario
+        User user = new User();
+        user.setName("Fulano da Silva");
+        user.setBirthDate(sdf.parse("20/12/1985"));
+        user.setCPF("11843771766");
+        user.setRegistrationDate(sdf.parse("20/12/2000"));
+        user.setExamExperationDate(sdf.parse("20/12/2020"));
+        user.setPayDay(sdf.parse("01/02/2020"));
+        //action
+        Boolean result = user.isPaymentOnDay();
+        //validation
+        assertTrue(result);
+    }
+
+}
