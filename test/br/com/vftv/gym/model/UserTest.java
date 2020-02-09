@@ -16,10 +16,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author thiag
- */
 public class UserTest {
     
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -29,6 +25,7 @@ public class UserTest {
     
     @BeforeClass
     public static void setUpClass() {
+
     }
     
     @AfterClass
@@ -80,5 +77,4 @@ public class UserTest {
         //validation
         assertFalse(result);
     }
-    
 }
