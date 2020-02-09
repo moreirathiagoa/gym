@@ -7,7 +7,10 @@ package br.com.vftv.gym.model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Calendar;
+import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -81,36 +84,34 @@ public class UserTest {
     @Test
     public void isOlderThanEightenn() throws ParseException
     {
-        //cenario
-        User user = new User();
-        user.setName("Fulano da Silva");
+       //scenario
+        
         user.setBirthDate(sdf.parse("20/12/1985"));
-        user.setCPF("11843771766");
-        user.setRegistrationDate(sdf.parse("20/12/2000"));
-        user.setExamExperationDate(sdf.parse("20/12/2020"));
-        user.setPayDay(Calendar.getInstance().getTime());
         
-        //action
-        Boolean result = user.isPaymentOnDay();
+       
+        //Date  nascimento = sdf.parse(user.getBirthDate().toString());
         
+        Boolean result = user.isOlderThanEighteen();
+        
+
         //validation
         assertTrue(result);
     }
     
     
-    @Test
-    public void isOlderThannotEightenn() throws ParseException
+     @Test
+    public void isNotOlderThanEightenn() throws ParseException
     {
-        //cenario
-        User user = new User();
-        user.setName("Fulano da Silva");
-        user.setBirthDate(sdf.parse("20/12/1985"));
-        user.setCPF("11843771766");
-        user.setRegistrationDate(sdf.parse("20/12/2000"));
-        user.setExamExperationDate(sdf.parse("20/12/2020"));
-        user.setPayDay(sdf.parse("07/01/2020"));
-        //action
-        Boolean result = user.isPaymentOnDay();
+       //scenario
+        
+        user.setBirthDate(Calendar.getInstance().getTime());
+        
+       
+        //Date  nascimento = sdf.parse(user.getBirthDate().toString());
+        
+        Boolean result = user.isOlderThanEighteen();
+        
+
         //validation
         assertFalse(result);
     }

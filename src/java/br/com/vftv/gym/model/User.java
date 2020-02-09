@@ -5,8 +5,11 @@
  */
 package br.com.vftv.gym.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
@@ -23,6 +26,7 @@ public class User {
     private Date registrationDate;
     private Date examExperationDate;
     private Date payDay;
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     public long getId() {
         return id;
@@ -126,16 +130,40 @@ public class User {
         return true;
     }
 
-    public Boolean isPaymentOnDay() 
-    {
+    public Boolean isPaymentOnDay() {
         LocalDateTime today = LocalDateTime.now();
         LocalDateTime payDayExperation = this.payDay.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDateTime()
                 .plusDays(30);
 
-        if(today.isAfter(payDayExperation))
+        if (today.isAfter(payDayExperation)) {
             return false;
+        }
         return true;
+    }
+
+    public Boolean isOlderThanEighteen() throws ParseException {
+        LocalDateTime hojemenosdezoito = Calendar.getInstance().getTime()
+                .toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime()
+                .plusYears(-18);
+
+        LocalDateTime nascimento = this.birthDate
+                .toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
+
+        
+        if (hojemenosdezoito.isAfter(nascimento)) {
+            System.out.println("Maior");
+            return true;
+            
+        }else{
+            System.out.println("Menor");
+            return false;
+           
+        }
     }
 }
