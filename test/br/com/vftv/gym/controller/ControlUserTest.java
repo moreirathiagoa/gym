@@ -28,7 +28,7 @@ public class ControlUserTest {
     
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     private User user;
-    private List<User> listAllsUser;
+    private List<User> listAllUser;
     private UserDAO dao;
     private UserControl userControl;
     
@@ -52,8 +52,8 @@ public class ControlUserTest {
         user.setCPF("11843771766");
         user.setRegistrationDate(sdf.parse("20/12/2000"));
         user.setExamExperationDate(sdf.parse("20/12/2020"));
-        listAllsUser = new ArrayList<User>();
-        listAllsUser.add(user);
+        listAllUser = new ArrayList<User>();
+        listAllUser.add(user);
     }
     
     @After
@@ -67,13 +67,13 @@ public class ControlUserTest {
     // public void hello() {}
     
     @Test
-    public void getAllsUserTest(){
+    public void getAllUserTest(){
         //cenario
         this.userControl = new UserControl(this.dao);
-        when(this.dao.getUserList()).thenReturn(listAllsUser);
+        when(this.dao.getUserList()).thenReturn(listAllUser);
         
         //action
-        List<User> list = this.userControl.getAllsUser();
+        List<User> list = this.userControl.getAllUser();
         
         //validation
         assertFalse(list.isEmpty());

@@ -27,7 +27,7 @@ public class UserControl {
     }
     
     
-    public List<User> getAllsUser(){
+    public List<User> getAllUser(){
         return this.userDAO.getUserList();
     }
     
