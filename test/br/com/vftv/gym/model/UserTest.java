@@ -74,5 +74,39 @@ public class UserTest {
         //validation
         assertFalse(result);
     }
+    
+    @Test
+    public void releaseUserExamExpired() throws ParseException{
+        //cenario
+        User user = new User();
+        user.setName("Fulano da Silva");
+        user.setBirthDate(sdf.parse("20/12/1985"));
+        user.setCPF("11843771766");
+        user.setRegistrationDate(sdf.parse("20/12/2000"));
+        user.setExamExperationDate(sdf.parse("08/12/2020"));
+        user.setPayDay(sdf.parse("07/01/2020"));
+        //action
+        Boolean result = user.isExamExamExpired();
+        //validation
+        System.out.println(result);
+        assertTrue(result);
+    }
+    
+    @Test
+    public void releaseUserExamNotExpired() throws ParseException{
+        //cenario
+        User user = new User();
+        user.setName("Fulano da Silva");
+        user.setBirthDate(sdf.parse("20/12/1985"));
+        user.setCPF("11843771766");
+        user.setRegistrationDate(sdf.parse("20/12/2000"));
+        user.setExamExperationDate(Calendar.getInstance().getTime());
+        user.setPayDay(sdf.parse("07/01/2020"));
+        //action
+        Boolean result = user.isExamExamExpired();
+        //validation
+        System.out.println(result);
+        assertFalse(result);
+    }
 
 }

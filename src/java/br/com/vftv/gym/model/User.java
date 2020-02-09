@@ -138,4 +138,14 @@ public class User {
             return false;
         return true;
     }
+    
+    public Boolean isExamExamExpired(){
+        LocalDateTime today = LocalDateTime.now();
+        LocalDateTime examExperationDate = this.examExperationDate.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
+        System.out.println(today+" isisAfter "+examExperationDate);
+        return today.isAfter(examExperationDate);
+    }
+    
 }
