@@ -18,13 +18,14 @@ import static org.junit.Assert.*;
 public class UserTest {
     
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private User user;
     
     public UserTest() {
     }
     
     @BeforeClass
-    public static void setUpClass() {
-
+    public static void setUpClass() throws ParseException {
+        
     }
     
     @AfterClass
@@ -32,7 +33,13 @@ public class UserTest {
     }
     
     @Before
-    public void setUp() {
+    public void setUp() throws ParseException {
+        user = new User();
+        user.setName("Fulano da Silva");
+        user.setBirthDate(sdf.parse("20/12/1985"));
+        user.setCPF("11843771766");
+        user.setRegistrationDate(sdf.parse("20/12/2000"));
+        user.setExamExperationDate(sdf.parse("20/12/2020"));
     }
     
     @After
@@ -41,6 +48,38 @@ public class UserTest {
     
     @Test
     public void releaseUserPaymentOnDay() throws ParseException
+    {
+        //cenario
+        user.setPayDay(Calendar.getInstance().getTime());
+        
+        //action
+        Boolean result = user.isPaymentOnDay();
+        
+        //validation
+        assertTrue(result);
+    }
+    
+    
+    
+    @Test
+    public void releaseUserNotPaymentOnDay() throws ParseException
+    {
+        //cenario
+        user.setPayDay(sdf.parse("07/01/2020"));
+        
+        //action
+        Boolean result = user.isPaymentOnDay();
+        
+        //validation
+        assertFalse(result);
+    }
+    
+
+    
+   //Created Method isOlderThanEightenn
+    
+    @Test
+    public void isOlderThanEightenn() throws ParseException
     {
         //cenario
         User user = new User();
@@ -58,8 +97,9 @@ public class UserTest {
         assertTrue(result);
     }
     
+    
     @Test
-    public void releaseUserNotPaymentOnDay() throws ParseException
+    public void isOlderThannotEightenn() throws ParseException
     {
         //cenario
         User user = new User();
