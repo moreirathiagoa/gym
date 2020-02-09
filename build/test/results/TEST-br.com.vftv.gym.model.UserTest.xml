@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="DESKTOP-4H783LG" name="br.com.vftv.gym.model.UserTest" skipped="0" tests="2" time="0.172" timestamp="2020-02-09T03:08:52">
+<testsuite errors="0" failures="0" hostname="DESKTOP-4H783LG" name="br.com.vftv.gym.model.UserTest" skipped="0" tests="2" time="0.172" timestamp="2020-02-09T03:20:22">
   <properties>
     <property name="default.javac.source" value="1.4" />
     <property name="file.encoding.pkg" value="sun.io" />
@@ -69,7 +69,7 @@
     <property name="file.encoding" value="Cp1252" />
     <property name="dist.javadoc.dir" value="dist/javadoc" />
     <property name="ant.project.default-target" value="default" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner br.com.vftv.gym.model.UserTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,D:\Data\OneDrive\Documents\gym\build\test\results\TEST-br.com.vftv.gym.model.UserTest.xml crashfile=D:\Data\OneDrive\Documents\gym\build\junitvmwatcher5344635578070111436.properties propsfile=D:\Data\OneDrive\Documents\gym\build\junit3746947719646069144.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner br.com.vftv.gym.model.UserTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,D:\Data\OneDrive\Documents\gym\build\test\results\TEST-br.com.vftv.gym.model.UserTest.xml crashfile=D:\Data\OneDrive\Documents\gym\build\junitvmwatcher5514650322278520000.properties propsfile=D:\Data\OneDrive\Documents\gym\build\junit7938593410848587723.properties" />
     <property name="ant.junit.enabletestlistenerevents" value="true" />
     <property name="ant.file" value="D:\Data\OneDrive\Documents\gym\build.xml" />
     <property name="ant.file.type.gym" value="file" />
@@ -226,7 +226,7 @@
     <property name="j2ee.platform.embeddableejb.classpath" value="" />
     <property name="sun.arch.data.model" value="64" />
   </properties>
-  <testcase classname="br.com.vftv.gym.model.UserTest" name="releaseUserNotPaymentOnDay" time="0.078" />
+  <testcase classname="br.com.vftv.gym.model.UserTest" name="releaseUserNotPaymentOnDay" time="0.094" />
   <testcase classname="br.com.vftv.gym.model.UserTest" name="releaseUserPaymentOnDay" time="0.0" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
