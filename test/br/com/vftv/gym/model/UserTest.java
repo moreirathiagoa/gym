@@ -18,13 +18,14 @@ import static org.junit.Assert.*;
 public class UserTest {
     
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private User user;
     
     public UserTest() {
     }
     
     @BeforeClass
-    public static void setUpClass() {
-
+    public static void setUpClass() throws ParseException {
+        
     }
     
     @AfterClass
@@ -32,7 +33,13 @@ public class UserTest {
     }
     
     @Before
-    public void setUp() {
+    public void setUp() throws ParseException {
+        user = new User();
+        user.setName("Fulano da Silva");
+        user.setBirthDate(sdf.parse("20/12/1985"));
+        user.setCPF("11843771766");
+        user.setRegistrationDate(sdf.parse("20/12/2000"));
+        user.setExamExperationDate(sdf.parse("20/12/2020"));
     }
     
     @After
@@ -43,12 +50,6 @@ public class UserTest {
     public void releaseUserPaymentOnDay() throws ParseException
     {
         //cenario
-        User user = new User();
-        user.setName("Fulano da Silva");
-        user.setBirthDate(sdf.parse("20/12/1985"));
-        user.setCPF("11843771766");
-        user.setRegistrationDate(sdf.parse("20/12/2000"));
-        user.setExamExperationDate(sdf.parse("20/12/2020"));
         user.setPayDay(Calendar.getInstance().getTime());
         
         //action
@@ -62,15 +63,11 @@ public class UserTest {
     public void releaseUserNotPaymentOnDay() throws ParseException
     {
         //cenario
-        User user = new User();
-        user.setName("Fulano da Silva");
-        user.setBirthDate(sdf.parse("20/12/1985"));
-        user.setCPF("11843771766");
-        user.setRegistrationDate(sdf.parse("20/12/2000"));
-        user.setExamExperationDate(sdf.parse("20/12/2020"));
         user.setPayDay(sdf.parse("07/01/2020"));
+        
         //action
         Boolean result = user.isPaymentOnDay();
+        
         //validation
         assertFalse(result);
     }
